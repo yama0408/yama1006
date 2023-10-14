@@ -1,7 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;      //追加
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +11,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Http\Controllers\PostController;  //外部にあるPostControllerクラスをインポート。
-Route::get('/posts', [PostController::class, 'index']);   
+Route::get('/', [PostController::class, 'index']);
+Route::get('/posts/{post}', [PostController::class ,'show']);
+// '/posts/{対象データのID}'にGetリクエストが来たら、PostControllerのshowメソッドを実行する
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//8-2
+//Route::get('/', function() {
+    //return view('posts.index');
+//});
+//Route::get('/', function () {
+    //return view('welcome');
+//});
+?>
